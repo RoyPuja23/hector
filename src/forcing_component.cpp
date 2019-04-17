@@ -56,6 +56,11 @@ void ForcingComponent::init( Core* coreptr ) {
     
     baseyear = 0.0;
     currentYear = 0.0;
+    cloud = 0.0; 
+    cloud_global = 0.0;
+    cloud_nh = 0.0;
+    cloud_sh = 0.0;
+    
     
     Ftot_constrain.allowInterp( true );
     Ftot_constrain.name = D_RF_TOTAL;
@@ -151,7 +156,19 @@ void ForcingComponent::setData( const string& varName,
         if( varName == D_RF_BASEYEAR ) {
             H_ASSERT( data.date == Core::undefinedIndex(), "date not allowed" );
             baseyear = data.getUnitval(U_UNDEFINED);
-        } else if( varName == D_FTOT_CONSTRAIN ) {
+        } else if ( varName == D_CLOUD ) {
+            H_ASSERT( data.date == Core::undefinedIndex(), " date not allowed" );
+            cloud = data.getUnitval(U_UNDEFINED);
+	} else if ( varName == D_CLOUD_GLOBAL ) {
+            H_ASSERT( data.date == Core::undefinedIndex(), " date not allowed" );
+            cloud_global = data.getUnitval(U_UNDEFINED);
+	} else if ( varName == D_CLOUD_NH ) {
+            H_ASSERT( data.date == Core::undefinedIndex(), " date not allowed" );
+            cloud_nh = data.getUnitval(U_UNDEFINED);
+	} else if ( varName == D_CLOUD_SH ) {
+            H_ASSERT( data.date == Core::undefinedIndex(), " date not allowed" );
+            cloud_sh = data.getUnitval(U_UNDEFINED);
+	} else if( varName == D_FTOT_CONSTRAIN ) {
             H_ASSERT( data.date != Core::undefinedIndex(), "date required" );
             Ftot_constrain.set(data.date, data.getUnitval(U_W_M2));
         } else {
