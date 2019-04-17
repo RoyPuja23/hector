@@ -64,7 +64,6 @@ void CSVOutputVisitor::visit( Core* c ) {
     csvFile << DELIMITER << c->sendMessage( M_GETDATA, D_RF_CLOUDsw ).value( U_W_M2 );
     csvFile << DELIMITER << c->sendMessage( M_GETDATA, D_RF_CLOUDlw ).value( U_W_M2 );
     csvFile << DELIMITER << c->sendMessage( M_GETDATA, D_ATMOSPHERIC_CH4 ).value( U_PPBV_CH4 );
-   
     csvFile << std::endl;
 }
 
