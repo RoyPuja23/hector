@@ -74,6 +74,8 @@ void ForcingComponent::init( Core* coreptr ) {
     core->registerCapability( D_RF_SO2i, getComponentName());
     core->registerCapability( D_RF_SO2, getComponentName());
     core->registerCapability( D_RF_VOL, getComponentName());
+    core->registerCapability( D_RF_CLOUDsw, getComponentName());
+    core->registerCapability( D_RF_CLOUDlw, getComponentName());
     
     // Register our dependencies
 
@@ -112,6 +114,7 @@ void ForcingComponent::init( Core* coreptr ) {
     core->registerDependency( D_RF_CH3Br, getComponentName() );
     core->registerDependency( D_RF_CH3Cl, getComponentName() );
     core->registerDependency( D_RF_T_ALBEDO, getComponentName() );
+    
 }
     
 //------------------------------------------------------------------------------
