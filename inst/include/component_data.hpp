@@ -27,10 +27,6 @@
 #define D_MAX_SPINUP            "max_spinup"
 #define D_ENABLED               "enabled"
 #define D_OUTPUT_ENABLED        "output"
-#define cloud                   "cloud"
-#define cloud_global            "cloud_global"
-#define cloud_nh                "cloud_nh"
-#define cloud_sh                "cloud_sh"
 
 // bc component
 #define D_EMISSIONS_BC          "BC_emissions"
@@ -60,6 +56,10 @@
 #define D_RF_halocarbons        D_RF_PREFIX "halocarbons"
 #define D_RF_CLOUDsw            D_RF_PREFIX "CLOUDsw"
 #define D_RF_CLOUDlw            D_RF_PREFIX "CLOUDlw"
+#define D_CLOUD                 "cloud"
+#define D_CLOUD_GLOBAL          "cloud_global"
+#define D_CLOUD_NH              "cloud_nh"
+#define D_CLOUD_SH              "cloud_sh"
 
 // halocarbon components
 #define D_RF_CF4                D_RF_PREFIX CF4_COMPONENT_BASE
