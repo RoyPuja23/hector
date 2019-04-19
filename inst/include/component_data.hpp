@@ -27,6 +27,10 @@
 #define D_MAX_SPINUP            "max_spinup"
 #define D_ENABLED               "enabled"
 #define D_OUTPUT_ENABLED        "output"
+#define cloud                   "cloud"
+#define cloud_global            "cloud_global"
+#define cloud_nh                "cloud_nh"
+#define cloud_sh                "cloud_sh"
 
 // bc component
 #define D_EMISSIONS_BC          "BC_emissions"
