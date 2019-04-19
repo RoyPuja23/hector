@@ -350,28 +350,55 @@ void ForcingComponent::run( const double runToDate ) throw ( h_exception ) {
 	// Rough estimate of preindustrial SST: 15.8 deg C.
 	// http://physics.oregonstate.edu/~hetheriw/projects/energy/topics/doc/environment/climate/Global_Surface_Temperature_Anomalies_NOAA.html
 	// corrected to preindustrial by looking at Hector hindcast average over 1880-2000. Roughly*
+	
+	if(cloud = 1) 
+	{
 	double sst = core->sendMessage( M_GETDATA, D_GLOBAL_TEMP ) + 15.8 + 273.15;
+		
+	// Now longwave forcing
+	if((sst > 274) && (sst < 285)) 
+	{
+		double cloud_lw = 33;
+	} 
+	else if((sst >= 285) && (sst < 298)) 
+	{
+		double cloud_lw = -0.615*sst + 208.38;
+	} 
+	else if(sst >= 298)
+	{
+		double cloud_lw = 14*sst - 4147;
+	}
+	
+	forcings[D_RF_CLOUDlw].set( cloud_lw, U_W_M2 );
+	
 	
 	// Shortwave forcing
 	double sw_nh = 7.22*sst - 2188.89;
-	if((sst > 278) && (sst < 287.5)){
+	
+	if((sst > 278) && (sst < 287.5)) {
 		double sw_sh = -2.11*sst + 564.3;
-	} else if(sst >= 287.5){
+	} else if(sst >= 287.5) {
 		double sw_sh = 2.17*sst - 664.88;
 	}
-	double cloud_sw = (sw_nh + sw_sh) / 2;
-	forcings[D_RF_CLOUDsw].set( cloud_sw, U_W_M2 );
-
-	// Now longwave
-	if((sst > 274) && (sst < 285)){
-		double cloud_lw = 33;
-	} else if((sst >= 285) && (sst < 298)){
-		double cloud_lw = -0.615*sst + 208.38;
-	} else if(sst >= 298){
-		double cloud_lw = 14*sst - 4147;
+	
+	if (cloud_global = 1) 
+	{ 
+		double cloud_sw = (sw_nh + sw_sh) / 2;
 	}
-	forcings[D_RF_CLOUDlw].set( cloud_lw, U_W_M2 );
-	    
+		else if((cloud_global = 0) && (cloud_nh = 1) && (cloud_sh = 0))
+		{
+			double cloud_sw = sw_nh;
+		}
+		
+		else if ((cloud_global = 0) && (cloud_sh = 1) && (cloud_nh = 0))
+		{
+			double cloud_sw = sw_sh;
+		}
+			
+	
+	forcings[D_RF_CLOUDsw].set( cloud_sw, U_W_M2 );
+		
+	}   
 	    
 	// ---------- Total ----------
         unitval Ftot( 0.0, U_W_M2 );  // W/m2
