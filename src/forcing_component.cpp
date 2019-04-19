@@ -353,7 +353,9 @@ void ForcingComponent::run( const double runToDate ) throw ( h_exception ) {
 	
 	if(cloud == 1) 
 	{
+	
 	double sst = core->sendMessage( M_GETDATA, D_GLOBAL_TEMP ) + 15.8 + 273.15;
+	double cloud_lw, cloud_sw, sw_nh, sw_sh ;
 		
 	// Now longwave forcing
 	if((sst > 274) && (sst < 285)) 
