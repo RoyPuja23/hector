@@ -83,6 +83,11 @@ private:
 
     double baseyear;        //! Year which forcing calculations will start
     double currentYear;     //! Tracks current year
+    double cloud;           //! Tracks clouds
+    double cloud_global;
+    double cloud_nh;
+    double cloud_sh;
+    
     unitval C0;             //! Records base year atmospheric CO2
     
     tseries<unitval> Ftot_constrain;       //! Total forcing can be supplied
