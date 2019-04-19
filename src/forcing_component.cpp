@@ -351,7 +351,7 @@ void ForcingComponent::run( const double runToDate ) throw ( h_exception ) {
 	// http://physics.oregonstate.edu/~hetheriw/projects/energy/topics/doc/environment/climate/Global_Surface_Temperature_Anomalies_NOAA.html
 	// corrected to preindustrial by looking at Hector hindcast average over 1880-2000. Roughly*
 	
-	if(cloud = 1) 
+	if(cloud == 1) 
 	{
 	double sst = core->sendMessage( M_GETDATA, D_GLOBAL_TEMP ) + 15.8 + 273.15;
 		
@@ -381,16 +381,16 @@ void ForcingComponent::run( const double runToDate ) throw ( h_exception ) {
 		double sw_sh = 2.17*sst - 664.88;
 	}
 	
-	if (cloud_global = 1) 
+	if (cloud_global == 1) 
 	{ 
 		double cloud_sw = (sw_nh + sw_sh) / 2;
 	}
-		else if((cloud_global = 0) && (cloud_nh = 1) && (cloud_sh = 0))
+		else if((cloud_global == 0) && (cloud_nh == 1) && (cloud_sh == 0))
 		{
 			double cloud_sw = sw_nh;
 		}
 		
-		else if ((cloud_global = 0) && (cloud_sh = 1) && (cloud_nh = 0))
+		else if ((cloud_global == 0) && (cloud_sh == 1) && (cloud_nh == 0))
 		{
 			double cloud_sw = sw_sh;
 		}
